@@ -7,8 +7,7 @@ import { useEffect, useRef } from "react";
 import { ShoppingBag, Eye } from "lucide-react";
 import { toast } from "sonner";
 
-const PRODUCTS_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663427685673/fHpYESz6PQmULupxkcDoCU/products-banner-ktaw88KDxmaM3mWVCaFzkS.webp";
+const PRODUCTS_IMG = "/images/hair-bundles-pshb.jpg";
 
 const collections = [
   {
@@ -178,7 +177,7 @@ export default function CollectionsSection() {
                 className="font-['Playfair_Display'] text-3xl lg:text-4xl font-bold"
                 style={{ color: "oklch(0.93 0.02 60)" }}
               >
-                100% Virgin Remy Human Hair
+                100% One Donor Brazilian Human Hair & Raw Thai Human Hair
               </h3>
             </div>
           </div>
