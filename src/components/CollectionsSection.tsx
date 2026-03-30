@@ -17,8 +17,8 @@ const collections = [
     price: "$189",
     originalPrice: "$240",
     description: "100% virgin Remy human hair. Silky smooth, tangle-free, and full of body.",
-    badge: "Bestseller",
-    img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=500&fit=crop",
+    badge: "Best Sellers",
+    img: "/images/best-sellers.jpg",
   },
   {
     id: 2,
@@ -73,7 +73,7 @@ const collections = [
 ];
 
 const badgeColors: Record<string, string> = {
-  Bestseller: "oklch(0.68 0.09 22)",
+  "Best Sellers": "oklch(0.68 0.09 22)",
   "New Arrival": "oklch(0.52 0.10 22)",
   Limited: "oklch(0.40 0.08 22)",
   Sale: "oklch(0.68 0.09 22)",
