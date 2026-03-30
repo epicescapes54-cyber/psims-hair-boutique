@@ -3,7 +3,7 @@
    Product grid with rose gold card borders, hover glow effects.
    ============================================================================= */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ShoppingBag, Eye } from "lucide-react";
 import { toast } from "sonner";
 
@@ -18,17 +18,24 @@ const collections = [
     originalPrice: "$240",
     description: "100% virgin Remy human hair. Silky smooth, tangle-free, and full of body.",
     badge: "Best Sellers",
-    img: "/images/best-sellers.jpg",
+    img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=500&fit=crop",
+    variants: null,
   },
   {
     id: 2,
-    name: "Body Wave Lace Front",
+    name: "Curly Hair Lace Front",
     category: "Wigs",
-    price: "$349",
+    price: "$249",
     originalPrice: null,
     description: "Pre-plucked HD lace front wig with natural hairline. 180% density.",
     badge: "New Arrival",
-    img: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&h=500&fit=crop",
+    img: "/images/best-sellers.jpg",
+    variants: [
+      { length: '14"', price: "$249.00" },
+      { length: '16"', price: "$299.00" },
+      { length: '18"', price: "$349.00" },
+      { length: '20"', price: "$399.00" },
+    ],
   },
   {
     id: 3,
@@ -39,6 +46,7 @@ const collections = [
     description: "5x5 HD lace closure with deep wave pattern. Bleached knots.",
     badge: null,
     img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&h=500&fit=crop",
+    variants: null,
   },
   {
     id: 4,
@@ -49,6 +57,7 @@ const collections = [
     description: "Argan oil & keratin infused serum for ultimate shine and repair.",
     badge: "Limited",
     img: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&h=500&fit=crop",
+    variants: null,
   },
   {
     id: 5,
@@ -59,6 +68,7 @@ const collections = [
     description: "Natural kinky curly texture. Blends seamlessly with natural hair.",
     badge: null,
     img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=400&h=500&fit=crop",
+    variants: null,
   },
   {
     id: 6,
@@ -69,6 +79,7 @@ const collections = [
     description: "Full lace wig with loose deep wave pattern. 13x6 lace frontal.",
     badge: "Sale",
     img: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&h=500&fit=crop",
+    variants: null,
   },
 ];
 
@@ -81,6 +92,7 @@ const badgeColors: Record<string, string> = {
 
 export default function CollectionsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [selectedVariants, setSelectedVariants] = useState<Record<number, number>>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -269,15 +281,57 @@ export default function CollectionsSection() {
                 >
                   {product.description}
                 </p>
+
+                {/* Length/Price Dropdown */}
+                {product.variants && (
+                  <div className="mb-4">
+                    <label
+                      className="font-['Josefin_Sans'] text-[0.6rem] tracking-[0.2em] uppercase block mb-2"
+                      style={{ color: "oklch(0.68 0.09 22)" }}
+                    >
+                      Hair Length
+                    </label>
+                    <select
+                      value={selectedVariants[product.id] ?? 0}
+                      onChange={(e) =>
+                        setSelectedVariants((prev) => ({
+                          ...prev,
+                          [product.id]: Number(e.target.value),
+                        }))
+                      }
+                      className="w-full font-['Cormorant_Garamond'] text-base outline-none"
+                      style={{
+                        background: "oklch(0.14 0.005 285)",
+                        border: "1px solid oklch(0.68 0.09 22 / 25%)",
+                        color: "oklch(0.93 0.02 60)",
+                        padding: "0.625rem 0.75rem",
+                        appearance: "none",
+                      }}
+                    >
+                      {product.variants.map((v, vi) => (
+                        <option
+                          key={vi}
+                          value={vi}
+                          style={{ background: "oklch(0.14 0.005 285)" }}
+                        >
+                          {v.length} — {v.price}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
                 <div className="flex items-center justify-between">
                   <div className="flex items-baseline gap-2">
                     <span
                       className="font-['Playfair_Display'] text-xl font-bold"
                       style={{ color: "oklch(0.80 0.07 22)" }}
                     >
-                      {product.price}
+                      {product.variants
+                        ? product.variants[selectedVariants[product.id] ?? 0].price
+                        : product.price}
                     </span>
-                    {product.originalPrice && (
+                    {!product.variants && product.originalPrice && (
                       <span
                         className="font-['Cormorant_Garamond'] text-sm line-through"
                         style={{ color: "oklch(0.50 0.02 60)" }}
