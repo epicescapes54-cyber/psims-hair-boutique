@@ -12,14 +12,19 @@ const PRODUCTS_IMG = "/images/hair-bundles-pshb.jpg";
 const collections = [
   {
     id: 1,
-    name: "Silky Straight Bundle",
+    name: "Straight & Deep Wave Loose One Donor Hair Bundles",
     category: "Hair Extensions",
-    price: "$189",
-    originalPrice: "$240",
-    description: "100% virgin Remy human hair. Silky smooth, tangle-free, and full of body.",
+    price: "$149",
+    originalPrice: null,
+    description: "100% one donor human hair bundles. Silky straight and deep wave loose texture, tangle-free and full of body.",
     badge: "Best Sellers",
-    img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=500&fit=crop",
-    variants: null,
+    img: "/images/straight-deep-wave-bundles.png",
+    variants: [
+      { length: '18"', price: "$149.00" },
+      { length: '20"', price: "$199.00" },
+      { length: '22"', price: "$249.00" },
+      { length: '24"', price: "$299.00" },
+    ],
   },
   {
     id: 2,
